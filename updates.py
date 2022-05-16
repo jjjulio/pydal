@@ -11,6 +11,7 @@ try:
     for album in albums:
         print("Downloading New Releases: [" + str(count + 1) + "/" + str(len(albums)) + "]")
         album.download()
+        count += 1
     pydal.close()
 except KeyboardInterrupt:
     pydal = Pydal()
