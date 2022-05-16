@@ -226,7 +226,7 @@ class Artist(object):
         try:
             with open('./DB/downloaded/artists.txt') as myfile:
                 if str(self.id) in myfile.read():
-                    print("Album: " + self.name + " already downloaded, skipping...")
+                    print("Artist: " + self.name + " already downloaded, skipping...")
                     return
         except:
             pass
