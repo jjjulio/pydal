@@ -267,9 +267,14 @@ class Artist(object):
         self.downloadPicture()
         albums = self.getAlbums()
         singles = self.getSingles()
+        count = 0
         for album in albums:
+            print("Downloading Albums: [" + str(count + 1) + "/" + str(len(albums)) + "]")
             album.download()
+
+        count = 0
         for single in singles:
+            print("Downloading Singles: [" + str(count + 1) + "/" + str(len(singles)) + "]")
             single.download()
         print("==========================================================")
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/artists.txt")
