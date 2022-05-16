@@ -162,6 +162,25 @@ class Pydal(object):
                 json.dump(response, outfile)
         return Album(response)
 
+    def getLiked(self, type):
+        url = 'https://api.tidal.com/v1/users/{}/favorites/ids'.format(str(self.user['user']['userId']))
+        paras = {'countryCode': self.user['user']['countryCode']}
+        header = {'authorization': 'Bearer {}'.format(self.user['access_token'])}
+        response = requests.get(url, headers=header, params=paras).json()
+        # print(response)
+        if type == 'all':
+            return response
+        if type == 'videos':
+            return response['VIDEO']
+        if type == 'artists':
+            return response['ARTIST']
+        if type == 'albums':
+            return response['ALBUM']
+        if type == 'tracks':
+            return response['TRACK']
+        if type == 'playlists':
+            return response['PLAYLIST']
+
 class Artist(object):
 
     def __init__(self, data):
