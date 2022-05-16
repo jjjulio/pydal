@@ -223,6 +223,13 @@ class Artist(object):
         return albums
 
     def download(self):
+        try:
+            with open('./DB/downloaded/artists.txt') as myfile:
+                if str(self.id) in myfile.read():
+                    print("Album: " + self.name + " already downloaded, skipping...")
+                    return
+        except:
+            pass
         print("==========================================================")
         print("Downloading Artist ===> " + self.name + "\n\n")
         self.downloadPicture()
@@ -233,6 +240,8 @@ class Artist(object):
         for single in singles:
             single.download()
         print("==========================================================")
+        os.system("echo " + str(self.id) + " >> ./DB/downloaded/artists.txt")
+        return True
 
 class Album(object):
 
@@ -321,6 +330,13 @@ class Album(object):
         return tracks
 
     def download(self):
+        try:
+            with open('./DB/downloaded/albums.txt') as myfile:
+                if str(self.id) in myfile.read():
+                    print("Album: " + self.title + " already downloaded, skipping...")
+                    return
+        except:
+            pass
         print("----------------------------------------------------------")
         self.downloadCover()
         print("\n" + self.artist.name + " - " + self.title + "\n")
@@ -478,7 +494,7 @@ class Track(object):
 
         trackName = self.getPath() + str(self.trackNumber) + ' ' + self.title.replace("/", "-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<", "").replace(">", "").replace("|", "").replace("¿", "")
         if os.path.isfile(trackName + ".flac") or os.path.isfile(trackName + ".m4a"):
-            #print("Track file exists for: " + self.title + ", skipping")
+            print("Track file exists for: " + self.title + ", skipping")
             return
 
         if not self.allowStreaming:
