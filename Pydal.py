@@ -181,6 +181,19 @@ class Pydal(object):
         if type == 'playlists':
             return response['PLAYLIST']
 
+    def getFeed(self):
+        url = 'https://api.tidal.com/v2/feed/activities/'
+        paras = {'countryCode': self.user['user']['countryCode'], 'locale': 'en-us', 'userId': self.user['user']['userId']}
+        header = {'authorization': 'Bearer {}'.format(self.user['access_token'])}
+        response = requests.get(url, headers=header, params=paras).json()
+        albums = []
+        for activity in response['activities']:
+            if 'album' in activity['followableActivity']:
+                albums.append(self.getAlbum(activity['followableActivity']['album']['id']))
+        return albums
+
+
+
 class Artist(object):
 
     def __init__(self, data):
