@@ -7,7 +7,7 @@ try:
     pydal = Pydal()
     artists = pydal.getLiked('artists')
     print(artists)
-    limit = 2
+    limit = 1
     count = 0
     for artistId in artists:
         artist = pydal.getArtist(artistId)
