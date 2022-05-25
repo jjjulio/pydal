@@ -385,7 +385,7 @@ class Album(object):
         scanUrl = "http://altair.usbx.me:12075/library/sections/5/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/albums.txt")
         requests.get(scanUrl)
-        sleep(self.numberOfTracks*1)
+        sleep(self.numberOfTracks*1.5)
         print("----------------------------------------------------------")
         return True
 
