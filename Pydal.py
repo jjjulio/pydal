@@ -540,9 +540,9 @@ class Track(object):
             return
 
         trackName = self.getPath() + str(self.trackNumber) + ' ' + self.title.replace("/", "-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<", "").replace(">", "").replace("|", "").replace("¿", "")
-        if os.path.isfile(trackName + ".flac") or os.path.isfile(trackName + ".m4a"):
-            print("Track file exists for: " + self.title + ", skipping")
-            return
+        #if os.path.isfile(trackName + ".flac") or os.path.isfile(trackName + ".m4a"):
+        #    print("Track file exists for: " + self.title + ", skipping")
+        #    return
 
         if not self.allowStreaming:
             return
