@@ -5,7 +5,7 @@ from time import sleep
 
 try:
     pydal = Pydal()
-    albums = pydal.getLiked('tracks')
+    albums = pydal.getLiked('albums')
     #print(artists)
     limit = 1
     count = 0
