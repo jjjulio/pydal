@@ -337,8 +337,8 @@ class Album(object):
         else:
             albumPath = self.artist.getPath() + '[' + str(self.getYear()) + '] ' + tag + self.title.replace("/","-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<","").replace(">", "").replace("|", "").replace("¿", "")
 
-        if os.path.exists(albumPath):
-            albumPath = albumPath + ' [' + str(self.id) + ']/'
+        #if os.path.exists(albumPath):
+        #    albumPath = albumPath + ' [' + str(self.id) + ']/'
 
         return albumPath
 
