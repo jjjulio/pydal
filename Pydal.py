@@ -192,7 +192,14 @@ class Pydal(object):
                 albums.append(self.getAlbum(activity['followableActivity']['album']['id']))
         return albums
 
-
+    def deleteFavorite(self, type, id):
+        url = 'https://api.tidal.com/v1/users/' + str(self.user['user']['userId']) + '/favorites/' + type + '/' + str(id)
+        print(url)
+        paras = {'countryCode': self.user['user']['countryCode']}
+        header = {'authorization': 'Bearer {}'.format(self.user['access_token'])}
+        response = requests.delete(url, headers=header, params=paras)
+        print(response)
+        return response
 
 class Artist(object):
 
@@ -373,7 +380,7 @@ class Album(object):
             with open('./DB/downloaded/albums.txt') as myfile:
                 if str(self.id) in myfile.read():
                     print("Album: " + self.title + " already downloaded, skipping...")
-                    return
+                    return False
         except:
             pass
         print("----------------------------------------------------------")

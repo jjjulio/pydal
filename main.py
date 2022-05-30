@@ -5,13 +5,13 @@ from time import sleep
 
 try:
     pydal = Pydal()
-    artists = pydal.getLiked('artists')
-    print(artists)
+    albums = pydal.getLiked('tracks')
+    #print(artists)
     limit = 1
     count = 0
-    for artistId in artists:
-        artist = pydal.getArtist(artistId)
-        if artist.download():
+    for albumId in albums:
+        album = pydal.getAlbum(albumId)
+        if album.download():
             count += 1
         if count == limit:
             break
