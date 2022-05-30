@@ -319,6 +319,7 @@ class Album(object):
                 self.artists.append(Artist(albumArtist))
         except:
             pass
+        self.path = self.getPath()
 
     def getYear(self):
         return self.releaseDate.split("-")[0]
@@ -337,8 +338,8 @@ class Album(object):
         else:
             albumPath = self.artist.getPath() + '[' + str(self.getYear()) + '] ' + tag + self.title.replace("/","-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<","").replace(">", "").replace("|", "").replace("¿", "")
 
-        #if os.path.exists(albumPath):
-        #    albumPath = albumPath + ' [' + str(self.id) + ']/'
+        if os.path.exists(albumPath):
+            albumPath = albumPath + ' [' + str(self.id) + ']/'
 
         return albumPath
 
@@ -350,12 +351,12 @@ class Album(object):
             return None
 
     def downloadCover(self):
-        fileName = self.getPath() + 'Cover.jpg'
+        fileName = self.path + 'Cover.jpg'
         if self.cover == None or os.path.isfile(fileName):
             # print("Album does not have cover or cover already downloaded")
             return
         try:
-            os.makedirs(self.getPath())
+            os.makedirs(self.path)
         except OSError as error:
             pass
         # try:
@@ -363,7 +364,7 @@ class Album(object):
 
 
     def getCoverFileName(self):
-        return self.getPath() + 'Cover.jpg'
+        return self.path + 'Cover.jpg'
 
     def getTracks(self):
         url = 'https://api.tidal.com/v1/albums/' + str(self.id) + '/items'
@@ -392,7 +393,7 @@ class Album(object):
         tracks = self.getTracks()
         for track in tracks:
             track.download()
-        scanUrl = "http://altair.usbx.me:12075/library/sections/5/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
+        scanUrl = "http://altair.usbx.me:12075/library/sections/5/refresh?path=" + urllib.parse.quote_plus(self.path) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         print(scanUrl)
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/albums.txt")
         requests.get(scanUrl)
@@ -445,9 +446,9 @@ class Track(object):
 
     def getPath(self):
         if self.album.numberOfVolumes > 1:
-            return self.album.getPath() + 'CD ' + str(self.volumeNumber) + '/'  # + str(self.trackNumber) + ' ' + self.title.replace("/","-").replace(":"," -")
+            return self.album.path + 'CD ' + str(self.volumeNumber) + '/'  # + str(self.trackNumber) + ' ' + self.title.replace("/","-").replace(":"," -")
         else:
-            return self.album.getPath()  # + str(self.trackNumber) + ' ' + self.title.replace("/","-").replace(":"," -")
+            return self.album.path  # + str(self.trackNumber) + ' ' + self.title.replace("/","-").replace(":"," -")
 
 
     def getDownloadUrl(self):
@@ -487,9 +488,9 @@ class Track(object):
 
     def getLyricsFileName(self):
         if self.album.numberOfVolumes > 1:
-            return self.album.getPath() + 'CD ' + str(self.volumeNumber) + '/' + str(self.trackNumber) + ' ' + self.title.replace("/", "-").replace(":", " -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<", "").replace(">","").replace("|","").replace("¿", "") + '.lrc'
+            return self.album.path + 'CD ' + str(self.volumeNumber) + '/' + str(self.trackNumber) + ' ' + self.title.replace("/", "-").replace(":", " -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<", "").replace(">","").replace("|","").replace("¿", "") + '.lrc'
         else:
-            return self.album.getPath() + str(self.trackNumber) + ' ' + self.title.replace("/", "-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<","").replace(">", "").replace("|", "").replace("¿", "") + '.lrc'
+            return self.album.path + str(self.trackNumber) + ' ' + self.title.replace("/", "-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<","").replace(">", "").replace("|", "").replace("¿", "") + '.lrc'
 
     def getLyrics(self):
         url = 'https://api.tidal.com/v1/tracks/' + str(self.id) + '/lyrics'
