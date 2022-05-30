@@ -386,7 +386,8 @@ class Album(object):
             pass
         print("----------------------------------------------------------")
         self.downloadCover()
-        sleep(1.5)
+        print("Downloading cover...")
+        sleep(2)
         print("\n" + self.artist.name + " - " + self.title + "\n")
         tracks = self.getTracks()
         for track in tracks:
