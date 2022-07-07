@@ -407,7 +407,8 @@ class Album(object):
         print(scanUrl)
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/albums.txt")
         requests.get(scanUrl)
-        sleep(self.numberOfTracks*1.5)
+        sleep(2.0)
+        #sleep(self.numberOfTracks*1.5)
         print("----------------------------------------------------------")
         return True
 
