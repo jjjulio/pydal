@@ -240,7 +240,7 @@ class Artist(object):
         urllib.request.urlretrieve(self.getPictureUrl(), fileName)
 
 
-    def getAlbums(self):
+    def getSingles(self):
         url = 'https://api.tidal.com/v1/artists/' + str(self.id) + '/albums'
         paras = {'countryCode': Pydal.getUser()['user']['countryCode'], 'limit': 9999, 'filter': 'EPSANDSINGLES'}
         header = {'authorization': 'Bearer {}'.format(Pydal.getUser()['access_token'])}
@@ -251,7 +251,7 @@ class Artist(object):
         return singles
 
 
-    def getSingles(self ):
+    def getAlbums(self ):
         url = 'https://api.tidal.com/v1/artists/' + str(self.id) + '/albums'
         paras = {'countryCode': Pydal.getUser()['user']['countryCode'], 'limit': 9999}
         header = {'authorization': 'Bearer {}'.format(Pydal.getUser()['access_token'])}
@@ -292,6 +292,7 @@ class Artist(object):
 class Album(object):
 
     def __init__(self, data):
+        print(str(data) + "\n")
         self.id = str(data['id'])
         self.title = data['title']
         self.cover = data['cover']
@@ -322,6 +323,17 @@ class Album(object):
 
     def getYear(self):
         return self.releaseDate.split("-")[0]
+
+    def getReleaseType(self):
+        if "various artists" in str(self.artist.name).lower():
+            return "compilation"
+        else:
+            if "ep" in str(self.type).lower():
+                return "ep"
+            else:
+                if "single" in str(self.type).lower():
+                    return "single"
+        return "none"
 
     def getPath(self):
         tag = ''
@@ -627,6 +639,9 @@ class Track(object):
             audio["albumartist"] = self.album.artist.name
             audio["year"] = self.album.getYear()
             audio["date"] = self.album.releaseDate
+            typeR = self.album.getReleaseType()
+            if typeR != "none":
+                audio["releasetype"] = self.album.getReleaseType()
             if lyric != None:
                 audio["lyrics"] = lyric
             if self.album.cover != None:
@@ -655,6 +670,10 @@ class Track(object):
             audio["disk"] = [(self.volumeNumber, self.album.numberOfVolumes)]
             audio["soaa"] = self.album.artist.name
             audio["ISRC"] = self.isrc
+            """typeR = self.album.getReleaseType()
+            print(typeR)
+            if typeR != "none":
+                audio["----:com.apple.iTunes:MusicBrainz Album Type"] = self.album.getReleaseType()"""
             if lyric != None:
                 audio['\xa9lyr'] = lyric
             if self.album.cover != None:
