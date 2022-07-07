@@ -403,7 +403,7 @@ class Album(object):
         tracks = self.getTracks()
         for track in tracks:
             track.download()
-        scanUrl = "http://altair.usbx.me:12075/library/sections/7/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
+        scanUrl = "https://altair-direct.usbx.me:12075/library/sections/7/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         print(scanUrl)
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/albums.txt")
         requests.get(scanUrl)
