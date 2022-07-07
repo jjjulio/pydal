@@ -403,7 +403,7 @@ class Album(object):
         tracks = self.getTracks()
         for track in tracks:
             track.download()
-        scanUrl = "https://192-18-142-62.70bd9ac990e945959c764adc16376942.plex.direct:32400//library/sections/4/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
+        scanUrl = "https://192-18-142-62.70bd9ac990e945959c764adc16376942.plex.direct:32400/library/sections/4/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         print(scanUrl)
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/albums.txt")
         requests.get(scanUrl)
