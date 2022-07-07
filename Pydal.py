@@ -333,6 +333,9 @@ class Album(object):
             else:
                 if "single" in str(self.type).lower():
                     return "single"
+                else:
+                    if "en vivo" in str(self.title).lower():
+                        return "live"
         return "none"
 
     def getPath(self):
