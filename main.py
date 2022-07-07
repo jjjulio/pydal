@@ -7,7 +7,7 @@ try:
     pydal = Pydal()
     albums = pydal.getLiked('albums')
     #print(artists)
-    limit = 100
+    limit = 1
     count = 0
     for albumId in albums:
         album = pydal.getAlbum(albumId)
