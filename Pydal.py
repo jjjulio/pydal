@@ -158,7 +158,7 @@ class Pydal(object):
             paras = {'countryCode': self.user['user']['countryCode'], 'limit': 1}
             header = {'authorization': 'Bearer {}'.format(self.user['access_token'])}
             response = requests.get(url, headers=header, params=paras).json()
-            if "not found" in response:
+            if "not found" in response['userMessage']:
                 return self.getAlbum(119187177)
             with open('./DB/albums/' + str(albumId) + '.json', 'w') as outfile:
                 json.dump(response, outfile)
