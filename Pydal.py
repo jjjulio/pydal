@@ -292,7 +292,7 @@ class Artist(object):
 class Album(object):
 
     def __init__(self, data):
-        #print(str(data) + "\n")
+        print(str(data) + "\n")
         self.id = str(data['id'])
         self.title = data['title']
         self.cover = data['cover']
