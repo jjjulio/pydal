@@ -7,7 +7,7 @@ try:
     pydal = Pydal()
     albums = pydal.getLiked('albums')
     #print(artists)
-    limit = 300
+    limit = 1
     count = 0
     for albumId in albums:
         album = pydal.getAlbum(albumId)
@@ -15,7 +15,8 @@ try:
             count += 1
         if count == limit:
             break
-    limit = 2
+
+    """limit = 2
     count = 0
     artists = pydal.getLiked('artists')
     for arId in artists:
@@ -24,7 +25,7 @@ try:
         if artist.download():
             count += 1
         if count == limit:
-            break
+            break"""
 
     pydal.close()
 except KeyboardInterrupt:
