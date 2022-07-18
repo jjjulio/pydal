@@ -280,12 +280,38 @@ class Artist(object):
         albums = self.getAlbums()
         singles = self.getSingles()
         count = 0
+
+        albumsTmp = []
+        albumsTmp.append(albums[0])
+        for album in albums:
+            dup = False
+            for albumTmp in albumsTmp:
+                if album.releaseDate == albumTmp.releaseDate:
+                    dup = True
+                    break
+            if not dup:
+                albumsTmp.append(album)
+
+        albums = albumsTmp
+
         for album in albums:
             print("Downloading Albums: [" + str(count + 1) + "/" + str(len(albums)) + "]")
             album.download()
             count += 1
 
         count = 0
+
+        singlesTmp = []
+        singlesTmp.append(singles[0])
+        for single in singles:
+            dup = False
+            for singleTmp in singlesTmp:
+                if single.releaseDate == singleTmp.releaseDate:
+                    dup = True
+                    break
+            if not dup:
+                singlesTmp.append(single)
+
         for single in singles:
             print("Downloading Singles: [" + str(count + 1) + "/" + str(len(singles)) + "]")
             single.download()
