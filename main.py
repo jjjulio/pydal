@@ -5,18 +5,8 @@ from time import sleep
 
 try:
     pydal = Pydal()
-    albums = pydal.getLiked('albums')
-    #print(artists)
-    limit = 1
-    count = 0
-    for albumId in albums:
-        album = pydal.getAlbum(albumId)
-        if album.download():
-            count += 1
-        if count == limit:
-            break
 
-    """limit = 2
+    limit = 2
     count = 0
     artists = pydal.getLiked('artists')
     for arId in artists:
@@ -25,7 +15,20 @@ try:
         if artist.download():
             count += 1
         if count == limit:
-            break"""
+            break
+
+
+    albums = pydal.getLiked('albums')
+    limit = 10
+    count = 0
+    for albumId in albums:
+        album = pydal.getAlbum(albumId)
+        if album.download():
+            count += 1
+        if count == limit:
+            break
+
+
 
     pydal.close()
 except KeyboardInterrupt:
