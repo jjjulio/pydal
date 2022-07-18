@@ -15,6 +15,18 @@ try:
             count += 1
         if count == limit:
             break
+
+    artists = pydal.getLiked('artists')
+    for artist in artists:
+        albums = artist.getAlbums()
+        for album in albums:
+            album.download()
+
+        singles = artist.getSingles()
+        for single in singles:
+            single.download()
+
+        break
     pydal.close()
 except KeyboardInterrupt:
     pydal = Pydal()
