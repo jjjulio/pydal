@@ -17,7 +17,10 @@ try:
             break
 
     artists = pydal.getLiked('artists')
-    for artist in artists:
+    for arId in artists:
+
+        artist = pydal.getArtist(arId)
+
         albums = artist.getAlbums()
         for album in albums:
             album.download()
