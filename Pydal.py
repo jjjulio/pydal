@@ -400,7 +400,7 @@ class Album(object):
         try:
             with open('./DB/downloaded/albums.txt') as myfile:
                 if str(self.id) in myfile.read():
-                    print("Album: " + self.title + " already downloaded, skipping...")
+                    #print("Album: " + self.title + " already downloaded, skipping...")
                     return False
         except:
             pass
