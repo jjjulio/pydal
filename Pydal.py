@@ -135,6 +135,19 @@ class Pydal(object):
             print("Device no authorized on time, sorry :C")
             return False
 
+
+    def deleteFavoriteArtist(self, artistId):
+        url = 'https://api.tidal.com/v1/users/' + str(self.user['user']['userId']) +'/favorites/artists/' + str(artistId)
+        paras = {'countryCode': self.user['user']['countryCode']}
+        header = {'authorization': 'Bearer {}'.format(self.user['access_token'])}
+        requests.delete(url, headers=header, params=paras)
+
+    def deleteFavoriteAlbum(self, albumId):
+        url = 'https://api.tidal.com/v1/users/' + str(self.user['user']['userId']) +'/favorites/albums/' + str(albumId)
+        paras = {'countryCode': self.user['user']['countryCode']}
+        header = {'authorization': 'Bearer {}'.format(self.user['access_token'])}
+        requests.delete(url, headers=header, params=paras)
+
     def getArtist(self, artistId):
         try:
             with open('./DB/artists/' + str(artistId) + '.json') as json_file:
@@ -441,7 +454,7 @@ class Album(object):
         tracks = self.getTracks()
         for track in tracks:
             track.download()
-        scanUrl = "https://beta0.p1exluth0r.com/library/sections/3/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
+        scanUrl = "https://192-18-142-62.70bd9ac990e945959c764adc16376942.plex.direct:32400/library/sections/4/refresh?path=" + urllib.parse.quote_plus(self.getPath()) + "&X-Plex-Token=Typea5Ncd-aJ8yp8x1VV"
         print(scanUrl)
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/albums.txt")
         requests.get(scanUrl)
