@@ -315,7 +315,7 @@ class Artist(object):
             album.download()
             count += 1
 
-        count = 0
+        """count = 0
 
         singlesTmp = []
         singlesTmp.append(singles[0])
@@ -331,7 +331,7 @@ class Artist(object):
         for single in singles:
             print("Downloading Singles: [" + str(count + 1) + "/" + str(len(singles)) + "]")
             single.download()
-            count += 1
+            count += 1"""
         print("==========================================================")
         os.system("echo " + str(self.id) + " >> ./DB/downloaded/artists.txt")
         return True
