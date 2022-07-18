@@ -288,7 +288,7 @@ class Artist(object):
             for albumTmp in albumsTmp:
                 if album.releaseDate == albumTmp.releaseDate:
                     if album.numberOfTracks > albumTmp.numberOfTracks:
-                        albumsTmp.remove(albumsTmp)
+                        albumsTmp.remove(albumTmp)
                         albumsTmp.append(album)
                     dup = True
                     break
