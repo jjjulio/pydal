@@ -390,9 +390,9 @@ class Album(object):
         tag = ''
         single = ''
         if self.audioQuality == 'HI_RES':
-            tag += '[M]'
+            tag += '[M] '
         if self.explicit == 'true':
-            tag += '[E]'
+            tag += '[E] '
 
         #tag += ' '
         if self.type == 'SINGLE' or self.type == 'EP':
