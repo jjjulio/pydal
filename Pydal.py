@@ -398,7 +398,7 @@ class Album(object):
         if self.type == 'SINGLE' or self.type == 'EP':
             albumPath = self.artist.getPath() + 'Singles/[' + str(self.getYear()) + '] ' + tag + "[T] " + self.title.replace("/","-").replace(":", " -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"","").replace("<", "").replace(">", "").replace("|", "").replace("¿", "")
         else:
-            albumPath = self.artist.getPath() + '[' + str(self.getYear()) + '] ' + tag + self.title.replace("/","-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<","").replace(">", "").replace("|", "").replace("¿", "")
+            albumPath = self.artist.getPath() + '[' + str(self.getYear()) + '] ' + tag + "[T] " + self.title.replace("/","-").replace(":"," -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"", "").replace("<","").replace(">", "").replace("|", "").replace("¿", "")
 
         albumPath = albumPath + '/'
 
