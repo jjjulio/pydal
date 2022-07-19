@@ -394,7 +394,7 @@ class Album(object):
         if self.explicit == 'true':
             tag += '[E]'
 
-        tag += ' '
+        #tag += ' '
         if self.type == 'SINGLE' or self.type == 'EP':
             albumPath = self.artist.getPath() + 'Singles/[' + str(self.getYear()) + '] ' + tag + "[T] " + self.title.replace("/","-").replace(":", " -").replace("\\", "-").replace(":", "-").replace("*", "x").replace("?", "").replace("\"","").replace("<", "").replace(">", "").replace("|", "").replace("¿", "")
         else:
