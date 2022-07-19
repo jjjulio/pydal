@@ -6,7 +6,7 @@ from time import sleep
 try:
     pydal = Pydal()
 
-    limit = 2
+    limit = 10
     count = 0
     artists = pydal.getLiked('artists')
     for arId in artists:
@@ -19,7 +19,7 @@ try:
 
 
     albums = pydal.getLiked('albums')
-    limit = 10
+    limit = 100
     count = 0
     for albumId in albums:
         album = pydal.getAlbum(albumId)
