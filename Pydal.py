@@ -295,7 +295,8 @@ class Artist(object):
         count = 0
 
         albumsTmp = []
-        albumsTmp.append(albums[0])
+        if len(albums) > 0:
+            albumsTmp.append(albums[0])
         for album in albums:
             dup = False
             for albumTmp in albumsTmp:
