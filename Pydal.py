@@ -512,6 +512,7 @@ class Track(object):
                 self.artists.append(Pydal().getArtist(trackArtist['id']))
             except:
                 pass
+        print(self.artist)
         print(self.artists)
         self.album = Pydal().getAlbum(data['album']['id'])
 
