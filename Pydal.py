@@ -161,7 +161,7 @@ class Pydal(object):
                 json.dump(response, outfile)
         print(response)
         try:
-            if '404' in response['status']:
+            if 'not found' in response['userMessage']:
                 return None
         except:
             pass
