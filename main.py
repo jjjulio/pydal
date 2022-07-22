@@ -10,6 +10,7 @@ try:
     count = 0
     artists = pydal.getLiked('artists')
     for arId in artists:
+        print(arId)
         artist = pydal.getArtist(arId)
 
         if artist.download():
