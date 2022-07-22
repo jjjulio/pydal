@@ -29,7 +29,13 @@ try:
         if count == limit:
             break
 
-
+    albums = pydal.getFeed()
+    print("Downloading new releases!")
+    count = 0
+    for album in albums:
+        print("Downloading New Releases: [" + str(count + 1) + "/" + str(len(albums)) + "]")
+        album.download()
+        count += 1
 
     pydal.close()
 except KeyboardInterrupt:
