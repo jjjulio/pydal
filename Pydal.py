@@ -159,7 +159,7 @@ class Pydal(object):
             response = requests.get(url, headers=header, params=paras).json()
             with open('./DB/artists/' + str(artistId) + '.json', 'w') as outfile:
                 json.dump(response, outfile)
-        print(response)
+        #print(response)
         try:
             if 'not found' in response['userMessage']:
                 return None
@@ -446,6 +446,8 @@ class Album(object):
         return tracks
 
     def download(self):
+        if self.artist == None:
+            return
         try:
             with open('./DB/downloaded/albums.txt') as myfile:
                 if str(self.id) in myfile.read():
