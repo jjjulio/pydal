@@ -222,6 +222,7 @@ class Pydal(object):
 class Artist(object):
 
     def __init__(self, data):
+        print(data)
         self.id = data['id']
         self.name = data['name']
         self.picture = data['picture']
@@ -468,7 +469,7 @@ class Album(object):
 class Track(object):
 
     def __init__(self, data):
-        #print(data)
+        self.data = data
         self.id = data['id']
         self.title = data['title']
         self.duration = data['duration']
