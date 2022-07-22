@@ -509,10 +509,12 @@ class Track(object):
         self.artists = []
         for trackArtist in data['artists']:
             try:
-                self.artists.append(Pydal().getArtist(trackArtist['id']))
+                arTmp = Pydal().getArtist(trackArtist['id'])
+                if arTmp is None:
+                    continue
+                self.artists.append()
             except:
                 pass
-        self.artists.remove(None)
         print(self.artist)
         print(self.artists)
         self.album = Pydal().getAlbum(data['album']['id'])
