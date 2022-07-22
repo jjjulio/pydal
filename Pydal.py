@@ -510,9 +510,8 @@ class Track(object):
         for trackArtist in data['artists']:
             try:
                 arTmp = Pydal().getArtist(trackArtist['id'])
-                if arTmp is None:
-                    continue
-                self.artists.append()
+                if arTmp is not None:
+                    self.artists.append()
             except:
                 pass
         print(self.artist)
