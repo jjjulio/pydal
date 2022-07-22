@@ -159,7 +159,7 @@ class Pydal(object):
             response = requests.get(url, headers=header, params=paras).json()
             with open('./DB/artists/' + str(artistId) + '.json', 'w') as outfile:
                 json.dump(response, outfile)
-        #print(response)
+        print(response)
         if 404 in response['status']:
             return None
         return Artist(response)
@@ -224,7 +224,7 @@ class Pydal(object):
 class Artist(object):
 
     def __init__(self, data):
-        print(data)
+        #print(data)
         self.id = data['id']
         self.name = data['name']
         self.picture = data['picture']
