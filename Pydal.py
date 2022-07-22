@@ -160,8 +160,11 @@ class Pydal(object):
             with open('./DB/artists/' + str(artistId) + '.json', 'w') as outfile:
                 json.dump(response, outfile)
         print(response)
-        if 404 in response['status']:
-            return None
+        try:
+            if 404 in response['status']:
+                return None
+        except:
+            pass
         return Artist(response)
 
     def getAlbum(self, albumId):
