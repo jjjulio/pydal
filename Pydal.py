@@ -446,8 +446,6 @@ class Album(object):
         return tracks
 
     def download(self):
-        if self.artist == None:
-            return
         try:
             with open('./DB/downloaded/albums.txt') as myfile:
                 if str(self.id) in myfile.read():
@@ -610,6 +608,8 @@ class Track(object):
                 f.write(lyric)
 
     def download(self):
+        if self.artist == None:
+            return
         if self.type.lower() == "music video":
             print("Not downloading videos yet")
             return
