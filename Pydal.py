@@ -511,7 +511,7 @@ class Track(object):
             try:
                 arTmp = Pydal().getArtist(trackArtist['id'])
                 if arTmp is not None:
-                    self.artists.append()
+                    self.artists.append(arTmp)
             except:
                 pass
         print(self.artist)
